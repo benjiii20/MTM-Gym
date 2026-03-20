@@ -207,3 +207,33 @@
   font-size: 18px;
   font-weight: 700;
 }
+
+/* ---- Mobile ---- */
+@media (max-width: 600px) {
+  .form {
+    max-width: 100%;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+
+  .dismissBtn,
+  .submitBtn {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+  }
+}

@@ -75,3 +75,15 @@
 .line {
   display: block;
 }
+
+/* ---- Mobile ---- */
+@media (max-width: 600px) {
+  .messageCol {
+    max-width: 88%;
+  }
+
+  .bubble {
+    font-size: 14px;
+    padding: 10px 13px;
+  }
+}
