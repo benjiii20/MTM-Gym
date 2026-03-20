@@ -84,7 +84,7 @@ export default function BookingForm({ onSubmit, onDismiss }) {
     setError('');
     setLoading(true);
     try {
-      await onSubmit({ ...contact, notes: buildNotes(answers) });
+      await onSubmit({ ...contact, notes: buildNotes(answers), answers });
       setSubmitted(true);
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.');

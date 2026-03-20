@@ -4,7 +4,7 @@ const { createAppointment } = require('../services/calendar');
 const { appendLead } = require('../services/sheets');
 
 router.post('/', async (req, res) => {
-  const { name, email, phone, date, time, notes, language } = req.body;
+  const { name, email, phone, date, time, notes, language, answers } = req.body;
 
   if (!email) return res.status(400).json({ error: 'Email is required.' });
   if (!date)  return res.status(400).json({ error: 'Date is required.' });
@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
       phone,
       firstQuestion: req.body.firstQuestion || '',
       language: language || 'EN',
+      answers: answers || {},
     }).catch(() => {}); // don't fail if sheets errors
 
     res.json({ success: true, eventLink: event?.htmlLink || null });
