@@ -1,7 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
 
 const chatRouter = require('./routes/chat');
 const leadsRouter = require('./routes/leads');
@@ -10,12 +12,57 @@ const appointmentsRouter = require('./routes/appointments');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
-app.use(express.json());
+// Security headers
+app.use(helmet());
 
-app.use('/api/chat', chatRouter);
-app.use('/api/leads', leadsRouter);
-app.use('/api/appointments', appointmentsRouter);
+// CORS — only allow the gym's domain and localhost in dev
+const allowedOrigins = [
+  'https://www.mtmgym.de',
+  'https://mtmgym.de',
+  process.env.ALLOWED_ORIGIN,   // Railway app URL (set in Railway env vars)
+  'http://localhost:5173',
+  'http://localhost:3001',
+].filter(Boolean);
+
+app.use(cors({
+  origin: (origin, cb) => {
+    // Allow same-origin requests (no origin header) and listed origins
+    if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+    cb(new Error('CORS: origin not allowed'));
+  },
+}));
+
+// Limit body size to 32 KB — prevents memory abuse
+app.use(express.json({ limit: '32kb' }));
+
+// Rate limits
+const chatLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 30,                   // 30 messages per IP per window
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many messages. Please wait a few minutes and try again.' },
+});
+
+const leadsLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 5,                    // 5 lead submissions per IP per hour
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many submissions. Please try again later.' },
+});
+
+const appointmentsLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 5,                    // 5 booking attempts per IP per hour
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many booking attempts. Please try again later.' },
+});
+
+app.use('/api/chat', chatLimiter, chatRouter);
+app.use('/api/leads', leadsLimiter, leadsRouter);
+app.use('/api/appointments', appointmentsLimiter, appointmentsRouter);
 
 app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
 

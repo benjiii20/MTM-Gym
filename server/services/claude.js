@@ -27,10 +27,15 @@ KNOWLEDGE BASE:
 ${gymKnowledge}
 `;
 
+const MAX_CONTEXT_MESSAGES = 10; // keep last 10 messages (~5 exchanges) to cap token spend
+
 async function chat(messages) {
-  const anthropicMessages = messages.map((m) => ({
+  // Trim to the most recent messages so the context window never grows unbounded
+  const trimmed = messages.slice(-MAX_CONTEXT_MESSAGES);
+
+  const anthropicMessages = trimmed.map((m) => ({
     role: m.role,
-    content: m.content,
+    content: m.content.slice(0, 2000), // hard cap per message just in case
   }));
 
   const response = await client.messages.create({
