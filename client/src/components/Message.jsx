@@ -1,5 +1,6 @@
 import styles from './Message.module.css';
-import BookingForm from './BookingForm';
+
+const BOOKING_URL = 'https://www.mtmgym.de/en/free-initial-consultation/';
 
 function formatContent(text) {
   return text
@@ -7,7 +8,7 @@ function formatContent(text) {
     .map((line, i) => <span key={i} className={styles.line}>{line || <br />}</span>);
 }
 
-export default function Message({ message, onSubmitBooking, onDismissBooking }) {
+export default function Message({ message, onDismissBooking }) {
   const isUser = message.role === 'user';
 
   return (
@@ -22,10 +23,22 @@ export default function Message({ message, onSubmitBooking, onDismissBooking }) 
           <p className={styles.content}>{formatContent(message.content)}</p>
         </div>
         {message.showBookingForm && (
-          <BookingForm
-            onSubmit={onSubmitBooking}
-            onDismiss={() => onDismissBooking(message.id)}
-          />
+          <div className={styles.bookingCard}>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.bookingBtn}
+            >
+              Book Your Free Consultation →
+            </a>
+            <button
+              className={styles.dismissLink}
+              onClick={() => onDismissBooking(message.id)}
+            >
+              Maybe later
+            </button>
+          </div>
         )}
       </div>
     </div>

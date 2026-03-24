@@ -57,35 +57,6 @@ export default function App() {
     [messages]
   );
 
-  const submitBooking = useCallback(
-    async (formData) => {
-      const firstUserMsg = messages.find((m) => m.role === 'user')?.content || '';
-      const lastUserMsg = [...messages].reverse().find((m) => m.role === 'user')?.content || '';
-      const language = /[äöüÄÖÜß]/.test(lastUserMsg) ? 'DE' : 'EN';
-
-      const res = await fetch('/api/appointments', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, firstQuestion: firstUserMsg, language }),
-      });
-
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || 'Booking failed');
-      }
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          role: 'assistant',
-          content: `Your consultation has been booked! We'll see you soon, ${formData.name || 'there'}. If you have any more questions, feel free to ask.`,
-        },
-      ]);
-    },
-    [messages]
-  );
-
   const dismissBooking = useCallback((msgId) => {
     setMessages((prev) =>
       prev.map((m) => (m.id === msgId ? { ...m, showBookingForm: false } : m))
@@ -97,7 +68,6 @@ export default function App() {
       messages={messages}
       isLoading={isLoading}
       onSendMessage={sendMessage}
-      onSubmitBooking={submitBooking}
       onDismissBooking={dismissBooking}
     />
   );

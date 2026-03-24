@@ -3,7 +3,7 @@ import Message from './Message';
 import TypingIndicator from './TypingIndicator';
 import styles from './ChatWindow.module.css';
 
-export default function ChatWindow({ messages, isLoading, onSendMessage, onSubmitBooking, onDismissBooking }) {
+export default function ChatWindow({ messages, isLoading, onSendMessage, onDismissBooking }) {
   const [input, setInput] = useState('');
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
@@ -46,7 +46,6 @@ export default function ChatWindow({ messages, isLoading, onSendMessage, onSubmi
           <Message
             key={msg.id}
             message={msg}
-            onSubmitBooking={onSubmitBooking}
             onDismissBooking={onDismissBooking}
           />
         ))}
