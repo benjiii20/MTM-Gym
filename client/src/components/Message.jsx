@@ -1,12 +1,7 @@
+import ReactMarkdown from 'react-markdown';
 import styles from './Message.module.css';
 
 const BOOKING_URL = 'https://www.mtmgym.de/en/free-initial-consultation/';
-
-function formatContent(text) {
-  return text
-    .split('\n')
-    .map((line, i) => <span key={i} className={styles.line}>{line || <br />}</span>);
-}
 
 export default function Message({ message, onDismissBooking }) {
   const isUser = message.role === 'user';
@@ -20,7 +15,10 @@ export default function Message({ message, onDismissBooking }) {
       )}
       <div className={styles.messageCol}>
         <div className={styles.bubble}>
-          <p className={styles.content}>{formatContent(message.content)}</p>
+          {isUser
+            ? <p className={styles.content}>{message.content}</p>
+            : <div className={styles.content}><ReactMarkdown>{message.content}</ReactMarkdown></div>
+          }
         </div>
         {message.showBookingForm && (
           <div className={styles.bookingCard}>
