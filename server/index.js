@@ -16,12 +16,16 @@ const PORT = process.env.PORT || 3001;
 app.use(helmet());
 
 // CORS — only allow the gym's domain and localhost in dev
+const isProd = process.env.NODE_ENV === 'production';
+const extraOrigin = process.env.ALLOWED_ORIGIN;
+// In production, reject ALLOWED_ORIGIN that isn't HTTPS to prevent accidental misconfiguration
+const safeExtraOrigin = extraOrigin && (!isProd || extraOrigin.startsWith('https://')) ? extraOrigin : null;
+
 const allowedOrigins = [
   'https://www.mtmgym.de',
   'https://mtmgym.de',
-  process.env.ALLOWED_ORIGIN,   // Railway app URL (set in Railway env vars)
-  'http://localhost:5173',
-  'http://localhost:3001',
+  safeExtraOrigin,
+  ...(!isProd ? ['http://localhost:5173', 'http://localhost:3001'] : []),
 ].filter(Boolean);
 
 app.use(cors({
@@ -35,10 +39,18 @@ app.use(cors({
 // Limit body size to 32 KB — prevents memory abuse
 app.use(express.json({ limit: '32kb' }));
 
+// Reject non-JSON POST bodies early
+app.use((req, res, next) => {
+  if (['POST', 'PUT', 'PATCH'].includes(req.method) && !req.is('application/json')) {
+    return res.status(415).json({ error: 'Content-Type must be application/json.' });
+  }
+  next();
+});
+
 // Rate limits
 const chatLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 30,                   // 30 messages per IP per window
+  max: 15,                   // 15 messages per IP per 15-min window
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many messages. Please wait a few minutes and try again.' },

@@ -38,12 +38,17 @@ async function chat(messages) {
     content: m.content.slice(0, 2000), // hard cap per message just in case
   }));
 
-  const response = await client.messages.create({
-    model: 'claude-sonnet-4-6',
-    max_tokens: 1024,
-    system: SYSTEM_PROMPT,
-    messages: anthropicMessages,
-  });
+  const response = await Promise.race([
+    client.messages.create({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1024,
+      system: SYSTEM_PROMPT,
+      messages: anthropicMessages,
+    }),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Claude API timeout')), 30000)
+    ),
+  ]);
 
   const rawReply = response.content[0].text;
 

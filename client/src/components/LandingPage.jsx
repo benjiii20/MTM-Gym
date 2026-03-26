@@ -2,44 +2,56 @@ import { useState } from 'react';
 import styles from './LandingPage.module.css';
 
 const CONSULTATION_URL = 'https://www.mtmgym.de/en/free-initial-consultation/';
-
 const CDN = 'https://www.mtmgym.de/wp-content/uploads';
 
 const PILLARS = [
   {
     number: '01',
     title: 'Strength',
-    body: 'We guarantee your progress — without wasting any time — through goal-oriented coaching and structured strength training, accompanied by your personal trainer in every session.',
+    body: 'We guarantee your progress — without wasting any time — through goal-oriented coaching and structured strength training within a professional setting. Your personal coach accompanies every session in our studio to ensure you always get the absolute maximum benefit.',
     image: `${CDN}/2023/11/Homepage-HM-Strength-768x576.jpg`,
   },
   {
     number: '02',
     title: 'Lifestyle & Longevity',
-    body: 'In the initial assessment, we analyze your current condition using medical measurement methods to create the most precise and effective training and nutrition plan possible.',
+    body: 'In the initial assessment, we analyze your current condition using medical measurement methods to determine where you currently stand. What level of stress are you exposed to on a daily basis? Do you experience sleep issues, a fluctuating blood sugar level or are you lacking essential micronutrients that are holding you back? By fully understanding you, we can provide the optimal support to help you reach your goals of living a long and healthy life.',
     image: `${CDN}/2024/02/website_llifestyle-1-768x576.jpg`,
   },
   {
     number: '03',
     title: 'Nutrition',
-    body: 'The right nutrition is fundamental for well-being and successful training. Our coaches provide evidence-based guidance tailored to your lifestyle and goals.',
+    body: 'The right nutrition is fundamental for well-being and successful training. In order to optimize your intake of macro- and micronutrients, we have developed our nutrition and supplement strategies in a way that they can be adapted to your everyday life. Based on our assessment and customized to your needs, we will develop healthy habits.',
     image: `${CDN}/2023/11/Homepage-HM-Nutricion-768x576.jpg`,
   },
   {
     number: '04',
     title: 'Mental Health',
-    body: 'Exercise and nutrition are the most powerful partners for mental health. We integrate mindfulness and recovery strategies into every program.',
+    body: 'Exercise and nutrition are the most powerful partners for mental health. A healthier body, built and sustained through targeted habits, leads to increased stress resilience and improved performance.',
     image: `${CDN}/2023/11/Homepage-HM-Mental-Health-768x576.jpg`,
   },
 ];
 
 const CLIENTS = [
-  { name: 'Mitch', age: 32, job: 'Climate Scientist', months: '16 months' },
-  { name: 'Manja', age: 38, job: 'Marketing Lead', months: '17 months' },
-  { name: 'Björn', age: 32, job: 'Entrepreneur', months: '15 months' },
-  { name: 'Anna', age: 33, job: 'Coach', months: '5 months' },
-  { name: 'Ilya', age: 43, job: 'Entrepreneur', months: '14 months' },
-  { name: 'Markus', age: 34, job: 'Surgeon', months: '9 months' },
-  { name: 'Fred', age: 32, job: 'VP People', months: '12 months' },
+  { name: 'Mitch', age: 32, job: 'Climate Scientist', months: '16 months', image: `${CDN}/2024/01/01_Mitch_32_Jahre_Klimaforscher_16Monate-720x480.jpg` },
+  { name: 'Manja', age: 38, job: 'Marketing Lead', months: '17 months', image: `${CDN}/2024/01/02_Manja_38_Jahre_Marketing-Lead_17Monate-720x480.jpg` },
+  { name: 'Björn', age: 32, job: 'Entrepreneur', months: '15 months', image: `${CDN}/2024/01/04_Bjoern_32Jahre_Unternehmer_15Monate-720x480.jpg` },
+  { name: 'Anna', age: 33, job: 'Coach', months: '5 months', image: `${CDN}/2025/08/Design-ohne-Titel-2-720x480.png` },
+  { name: 'Ilya', age: 43, job: 'Entrepreneur', months: '14 months', image: `${CDN}/2024/01/05_Isaac_44Jahre_Unternehmer_14Monate-720x480.jpg` },
+  { name: 'Markus', age: 34, job: 'Surgeon', months: '9 months', image: `${CDN}/2024/01/05_Markus_34Jahre_Chirurg_9Monate-720x480.jpg` },
+  { name: 'Fred', age: 32, job: 'VP People', months: '12 months', image: `${CDN}/2024/01/06_Fred_32Jahre_VPPeople_12Monate-720x480.jpg` },
+  { name: 'Eugen', age: 31, job: 'Comedian', months: '3 months', image: `${CDN}/2024/01/07_Eugen_31Jahre_Comedian_3Monate-720x480.jpg` },
+  { name: 'Bashar', age: 35, job: 'Software Engineer', months: '5 months', image: `${CDN}/2024/01/08_Bashar_35Jahre_SoftwareEngineer_5Monate-720x480.jpg` },
+  { name: 'Yu', age: 30, job: 'Medical Doctor', months: '8 months', image: `${CDN}/2024/01/10_Yu_30Jahre_Medizinerin_8Monate-720x480.jpg` },
+  { name: 'Toby', age: 44, job: 'VP', months: '12 months', image: `${CDN}/2024/01/11_Toby_44Jahre_VP_12Monate-720x480.jpg` },
+  { name: 'Shawn', age: 36, job: 'Real Estate', months: '24 months', image: `${CDN}/2024/01/12_Shawn_36Jahre_Makler_24Monate-720x480.jpg` },
+  { name: 'Karl', age: 37, job: 'Physician', months: '6 months', image: `${CDN}/2024/01/14_Karl_37Jahre_Arzt_6Monate-720x480.jpg` },
+  { name: 'Robert', age: 43, job: 'Consultant', months: '4 months', image: `${CDN}/2024/01/15_Robert_43Jahre_Consultatant_4Monate-720x480.jpg` },
+  { name: 'Jason', age: 41, job: 'Entrepreneur', months: '5 months', image: `${CDN}/2024/01/16_Jason_41Jahre_Unternehmer_5Monate-720x480.jpg` },
+  { name: 'Thanu', age: 29, job: 'Project Manager', months: '4 months', image: `${CDN}/2024/01/17_Thanu_29Jahre_Projekt-Manager_4Monate-720x480.jpg` },
+  { name: 'Genna', age: 32, job: 'Entrepreneur', months: '8 months', image: `${CDN}/2024/01/18_Genna_32Jahre_Unternehmer_8Monate-720x480.jpg` },
+  { name: 'Henry', age: 28, job: 'Account Executive', months: '4 months', image: `${CDN}/2024/01/19_Henry_28-Jahre_Account-Executive_4Monate-720x480.jpg` },
+  { name: 'Elli', age: 23, job: 'Nurse', months: '8 months', image: `${CDN}/2024/01/20_Elli_23Jahre_Krankenschwester_8Monate-720x480.jpg` },
+  { name: 'Phillip', age: 29, job: 'Team Lead', months: '16 months', image: `${CDN}/2024/01/21_Phillip_29Jahre_TeamLead_16Monate-720x480.jpg` },
 ];
 
 const PT_TIERS = [
@@ -151,22 +163,22 @@ const CONCEPT_BOXES = [
   {
     icon: `${CDN}/2024/02/Icon-Team-five-stars.svg`,
     title: 'A TEAM OF EXPERTS',
-    body: 'Combined knowledge from over 10 academic degrees, over 100 seminars, and tens of thousands of hours of Personal Training experience.',
+    body: 'Combined knowledge from over 10 academic degrees, over 100 seminars, tens of thousands of hours of Personal Training, and diverse areas of expertise. We coaches are a team and share the goal of a healthy, long life for our members.',
   },
   {
     icon: `${CDN}/2023/12/Icon-Space.svg`,
     title: 'THE PERFECT SPACE',
-    body: 'More than a gym. Our studios are exclusively for Personal Training — no crowd, no distractions, just you and your trainer.',
+    body: 'More than a gym. Our studios are exclusively for Personal Training and are optimized for your experience. We offer the most modern technology and the perfect atmosphere for your workouts.',
   },
   {
     icon: `${CDN}/2023/12/Icon-Monitoring.svg`,
     title: 'CONSTANT MONITORING',
-    body: 'Assessment according to medical standards in a 4-week cycle to ensure your program is always perfectly calibrated.',
+    body: 'Assessment according to medical standards in a 4-week cycle: Your physical progress data and nutritional biomarkers serve as the basis for customizing your training and diet plans to achieve optimal results.',
   },
   {
     icon: `${CDN}/2023/12/Icon-Training.svg`,
-    title: 'PERIODIZED WORKOUT',
-    body: 'Periodized training based on sports science — your plan evolves as you do, maximizing results at every stage.',
+    title: 'PERIODIZED WORKOUT ROUTINE',
+    body: 'Periodized training based on sports science, taking your assessment into account. The MTM program utilizes a cyclical structure of varying intensity levels to ensure long-term performance improvements.',
   },
 ];
 
@@ -179,21 +191,15 @@ export default function LandingPage({ onOpenChat }) {
       {/* ---- NAV ---- */}
       <nav className={styles.nav}>
         <a href="https://www.mtmgym.de/en/" className={styles.navLogo} target="_blank" rel="noopener noreferrer">
-          <span className={styles.navLogoText}>MTM</span>
-          <span className={styles.navLogoDot}>·</span>
-          <span className={styles.navLogoSub}>GYM</span>
+          <img src={`${CDN}/2023/11/mtm-logo-small.svg`} alt="MTM Personal Training" className={styles.navLogoImg} />
         </a>
-        <ul className={styles.navLinks}>
-          <li><a href="https://www.mtmgym.de/en/studio-berlin-charlottenburg/" target="_blank" rel="noopener noreferrer">Charlottenburg</a></li>
-          <li><a href="https://www.mtmgym.de/en/studio-berlin-mitte/" target="_blank" rel="noopener noreferrer">Mitte</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="https://www.mtmgym.de/en/blog/" target="_blank" rel="noopener noreferrer">Blog</a></li>
-          <li><a href="https://www.mtmgym.de/en/career" target="_blank" rel="noopener noreferrer">Career</a></li>
-        </ul>
         <div className={styles.navRight}>
-          <a href={CONSULTATION_URL} target="_blank" rel="noopener noreferrer" className={styles.navCta}>
-            Free Consultation
-          </a>
+          <span className={styles.navLang}>EN</span>
+          <span className={styles.navLangDivider}>|</span>
+          <a href="https://www.mtmgym.de/" className={styles.navLangInactive} target="_blank" rel="noopener noreferrer">DE</a>
+          <button className={styles.navHamburger} aria-label="Menu">
+            <span /><span /><span />
+          </button>
         </div>
       </nav>
 
@@ -222,10 +228,13 @@ export default function LandingPage({ onOpenChat }) {
           </p>
           <div className={styles.heroBtns}>
             <a href={CONSULTATION_URL} target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
-              Free Consultation →
+              Free Consultation
+            </a>
+            <a href="https://www.mtmgym.de/shop/" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
+              MTM Shop
             </a>
             <button className={styles.btnSecondary} onClick={onOpenChat}>
-              Ask Our AI →
+              Chat with AI
             </button>
           </div>
         </div>
@@ -261,7 +270,7 @@ export default function LandingPage({ onOpenChat }) {
           <div className={styles.togetherInner}>
             <div>
               <p className={styles.topline}>Unleash Your Potential</p>
-              <h2 className={styles.sectionTitle}>Together on the Path to Progress</h2>
+              <h2 className={`${styles.sectionTitle} ${styles.uppercase}`}>Together on the Path to Progress</h2>
               <p className={styles.sectionBody}>
                 We are more than an external advisor; we are your partner on the way to your goal.
                 Our program is precisely tailored to your situation, and we personally accompany you
@@ -291,23 +300,23 @@ export default function LandingPage({ onOpenChat }) {
       <section className={`${styles.section} ${styles.sectionMid}`}>
         <div className={styles.container}>
           <p className={styles.topline}>Client Transformations</p>
-          <h2 className={styles.sectionTitle}>Results That Speak for Themselves</h2>
-          <div className={styles.galleryGrid}>
-            {CLIENTS.map((c) => (
-              <div key={c.name} className={styles.galleryCard}>
-                <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #1a1a1a 0%, #222 100%)' }} />
-                <div className={styles.galleryOverlay}>
-                  <div className={styles.galleryName}>{c.name}, {c.age}</div>
-                  <div className={styles.galleryMeta}>{c.job} · {c.months}</div>
-                </div>
+          <h2 className={styles.sectionTitle}>See our client's results</h2>
+        </div>
+        <div className={styles.galleryScroll}>
+          {CLIENTS.map((c) => (
+            <div key={`${c.name}-${c.age}`} className={styles.galleryCard}>
+              <img src={c.image} alt={`${c.name} transformation`} className={styles.galleryImg} loading="lazy" />
+              <div className={styles.galleryOverlay}>
+                <div className={styles.galleryName}>{c.name}, {c.age}</div>
+                <div className={styles.galleryMeta}>{c.job} · {c.months}</div>
               </div>
-            ))}
-            <a href={CONSULTATION_URL} target="_blank" rel="noopener noreferrer" className={styles.galleryCtaCard}>
-              <div className={styles.galleryCtaText}>AND YOU?</div>
-              <div className={styles.galleryCtaArrow}>→</div>
-              <div style={{ fontSize: '12px', color: 'var(--accent)', opacity: 0.8 }}>Free Consultation</div>
-            </a>
-          </div>
+            </div>
+          ))}
+          <a href={CONSULTATION_URL} target="_blank" rel="noopener noreferrer" className={styles.galleryCtaCard}>
+            <div className={styles.galleryCtaText}>AND YOU?</div>
+            <div className={styles.galleryCtaArrow}>→</div>
+            <div className={styles.galleryCtaSub}>Free Consultation</div>
+          </a>
         </div>
       </section>
 
@@ -376,10 +385,12 @@ export default function LandingPage({ onOpenChat }) {
       <section className={`${styles.section} ${styles.sectionMid}`}>
         <div className={styles.container}>
           <p className={styles.topline}>MTM Concept</p>
-          <h2 className={styles.sectionTitle}>Where Individualization Meets Results</h2>
+          <h2 className={`${styles.sectionTitle} ${styles.uppercase}`}>Where Individualization Meets Results</h2>
           <p className={styles.sectionBody}>
             We define success through results that are measurable, relevant, and noticeable in
             daily life. For us, support means true guidance — extending beyond the training session.
+            More energy, better sleep, and a nutrition plan that fits your life. Thanks to the
+            expertise of our trainer team, ambitions are transformed into achievable results.
           </p>
           <div className={styles.conceptBoxes}>
             {CONCEPT_BOXES.map((b) => (
@@ -397,7 +408,7 @@ export default function LandingPage({ onOpenChat }) {
       <section className={`${styles.section} ${styles.sectionDark}`}>
         <div className={styles.container}>
           <p className={styles.topline}>Our Locations</p>
-          <h2 className={styles.sectionTitle}>Two Studios in Berlin</h2>
+          <h2 className={`${styles.sectionTitle} ${styles.uppercase}`}>Our Studios</h2>
           <div className={styles.studiosGrid}>
             <a
               href="https://www.mtmgym.de/en/studio-berlin-charlottenburg/"
@@ -414,7 +425,6 @@ export default function LandingPage({ onOpenChat }) {
               <div className={styles.studioInfo}>
                 <div className={styles.studioName}>Charlottenburg</div>
                 <div className={styles.studioAddress}>
-                  <span className={styles.studioAddressPin}>📍</span>
                   Franklinstraße 28/29, 10587 Berlin
                 </div>
               </div>
@@ -434,7 +444,6 @@ export default function LandingPage({ onOpenChat }) {
               <div className={styles.studioInfo}>
                 <div className={styles.studioName}>Mitte</div>
                 <div className={styles.studioAddress}>
-                  <span className={styles.studioAddressPin}>📍</span>
                   Schönhauser Allee 9, 10119 Berlin
                 </div>
               </div>
@@ -447,7 +456,7 @@ export default function LandingPage({ onOpenChat }) {
       <div className={styles.ctaBanner}>
         <h2 className={styles.ctaBannerTitle}>Ready to start?</h2>
         <p className={styles.ctaBannerSub}>Book your free initial consultation — no commitment, no strings attached.</p>
-        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div className={styles.ctaBannerBtns}>
           <a href={CONSULTATION_URL} target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
             Book Free Consultation →
           </a>
@@ -463,7 +472,7 @@ export default function LandingPage({ onOpenChat }) {
           <div className={styles.footerInner}>
             <div>
               <img
-                src={`https://www.mtmgym.de/wp-content/themes/mtm/assets/img/make-the-most.svg`}
+                src={`${CDN}/2023/11/make-the-most.svg`}
                 alt="Make the Most"
                 className={styles.footerLogo}
               />
@@ -479,7 +488,7 @@ export default function LandingPage({ onOpenChat }) {
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href={CONSULTATION_URL} target="_blank" rel="noopener noreferrer">Free Consultation</a></li>
                 <li><a href="https://www.mtmgym.de/en/blog/" target="_blank" rel="noopener noreferrer">Blog</a></li>
-                <li><a href="https://www.mtmgym.de/en/career" target="_blank" rel="noopener noreferrer">Career</a></li>
+                <li><a href="https://www.mtmgym.de/en/career/" target="_blank" rel="noopener noreferrer">Career</a></li>
               </ul>
             </div>
             <div>

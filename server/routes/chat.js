@@ -26,10 +26,23 @@ router.post('/', async (req, res) => {
     if (m.content.length > MAX_MSG_LENGTH) return res.status(400).json({ error: 'Message too long.' });
   }
 
-  // Validate analytics fields
+  // Validate analytics fields — strict type checks prevent prototype pollution
   if (messageCount !== undefined && (typeof messageCount !== 'number' || messageCount < 0 || messageCount > 10000)) {
     return res.status(400).json({ error: 'Invalid messageCount.' });
   }
+  if (sessionId !== undefined && typeof sessionId !== 'string') {
+    return res.status(400).json({ error: 'Invalid sessionId.' });
+  }
+  if (firstQuestion !== undefined && typeof firstQuestion !== 'string') {
+    return res.status(400).json({ error: 'Invalid firstQuestion.' });
+  }
+  if (isReturnVisitor !== undefined && typeof isReturnVisitor !== 'boolean') {
+    return res.status(400).json({ error: 'Invalid isReturnVisitor.' });
+  }
+
+  // Clamp string fields to safe lengths
+  const safeSessionId = typeof sessionId === 'string' ? sessionId.slice(0, 64) : '';
+  const safeFirstQuestion = typeof firstQuestion === 'string' ? firstQuestion.slice(0, 500) : '';
 
   const lastUserMsg = [...messages].reverse().find((m) => m.role === 'user');
 
@@ -45,9 +58,9 @@ router.post('/', async (req, res) => {
         language,
         ledToLead: result.showBookingForm || false,
         messageCount: messageCount || 1,
-        firstQuestion: firstQuestion || lastUserMsg.content,
-        returnVisitor: isReturnVisitor || false,
-        sessionId: sessionId || '',
+        firstQuestion: safeFirstQuestion || lastUserMsg.content,
+        returnVisitor: isReturnVisitor === true,
+        sessionId: safeSessionId,
       }).catch((e) => console.error('logChat error:', e.message));
     }
 

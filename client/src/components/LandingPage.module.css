@@ -46,6 +46,11 @@
   max-width: 600px;
 }
 
+.uppercase {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 /* =========================================
    NAV
    ========================================= */
@@ -55,88 +60,79 @@
   left: 0;
   right: 0;
   z-index: 500;
-  height: 64px;
+  height: 100px;
   display: flex;
-  align-items: center;
-  padding: 0 40px;
-  background: rgba(15, 15, 15, 0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+  padding: 24px 48px 0;
+  background: transparent;
+  border-bottom: none;
 }
 
 .navLogo {
   display: flex;
-  align-items: baseline;
-  gap: 4px;
+  align-items: center;
   text-decoration: none;
   flex-shrink: 0;
 }
 
-.navLogoText {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: 4px;
-  color: var(--accent);
-}
-
-.navLogoDot {
-  font-size: 20px;
-  color: var(--text-muted);
-}
-
-.navLogoSub {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-}
-
-.navLinks {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  margin: 0 auto;
-  list-style: none;
-}
-
-.navLinks a {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  text-decoration: none;
-  letter-spacing: 0.3px;
-  transition: color 0.2s;
-}
-
-.navLinks a:hover {
-  color: var(--text-primary);
-  text-decoration: none;
+.navLogoImg {
+  height: 88px;
+  width: auto;
+  display: block;
 }
 
 .navRight {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  margin-left: auto;
   flex-shrink: 0;
 }
 
-.navCta {
+.navLang {
   font-size: 13px;
-  font-weight: 700;
-  padding: 9px 20px;
-  background: var(--accent);
-  color: #0f0f0f;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  transition: background 0.2s;
-  letter-spacing: 0.3px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+  cursor: default;
 }
 
-.navCta:hover {
-  background: var(--accent-hover);
-  color: #0f0f0f;
+.navLangDivider {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.navLangInactive {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
   text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+.navLangInactive:hover {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.navHamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 8px;
+}
+
+.navHamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
 }
 
 /* =========================================
@@ -149,7 +145,9 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding-bottom: 80px;
 }
 
 .heroVideo {
@@ -176,32 +174,33 @@
   z-index: 1;
   text-align: center;
   padding: 0 24px;
-  max-width: 760px;
+  width: 100%;
 }
 
 .heroLogo {
-  height: 48px;
-  width: auto;
-  margin-bottom: 36px;
-  opacity: 0.9;
-  filter: brightness(1.15);
+  max-width: min(820px, 82vw);
+  width: 82vw;
+  height: auto;
+  margin-bottom: 28px;
+  opacity: 0.95;
+  filter: brightness(1.1);
 }
 
 .heroTitle {
-  font-size: clamp(28px, 5vw, 52px);
-  font-weight: 800;
-  letter-spacing: -1px;
-  color: var(--text-primary);
-  line-height: 1.1;
-  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: rgb(255, 251, 243);
+  line-height: 26px;
+  margin-bottom: 8px;
 }
 
 .heroSub {
-  font-size: 17px;
-  color: rgba(240, 237, 232, 0.75);
-  line-height: 1.65;
-  margin-bottom: 40px;
-  max-width: 520px;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(255, 251, 243);
+  line-height: 26px;
+  margin-bottom: 32px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -215,42 +214,44 @@
 
 .btnPrimary {
   font-size: 14px;
-  font-weight: 700;
-  padding: 13px 28px;
-  background: var(--accent);
-  color: #0f0f0f;
-  border-radius: var(--radius-sm);
+  font-weight: 500;
+  padding: 8px 20px;
+  background: #d5dca6;
+  color: #293133;
+  border-radius: 40px;
+  border: 2px solid #d5dca6;
   text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
-  border: none;
+  letter-spacing: 0.016875em;
   cursor: pointer;
-  letter-spacing: 0.3px;
+  display: inline-block;
+  transition: background 0.2s;
 }
 
 .btnPrimary:hover {
-  background: var(--accent-hover);
-  color: #0f0f0f;
-  transform: translateY(-1px);
+  background: #90977b;
+  border-color: #90977b;
+  color: #293133;
   text-decoration: none;
 }
 
 .btnSecondary {
   font-size: 14px;
-  font-weight: 600;
-  padding: 13px 28px;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-primary);
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-weight: 500;
+  padding: 8px 20px;
+  background: #d5dca6;
+  color: #293133;
+  border-radius: 40px;
+  border: 2px solid #d5dca6;
+  letter-spacing: 0.016875em;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
-  letter-spacing: 0.3px;
+  display: inline-block;
+  transition: background 0.2s;
 }
 
 .btnSecondary:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-1px);
+  background: #90977b;
+  border-color: #90977b;
+  color: #293133;
 }
 
 /* =========================================
@@ -350,21 +351,30 @@
 }
 
 /* =========================================
-   CLIENT GALLERY
+   CLIENT GALLERY — horizontal scroll strip
    ========================================= */
-.galleryGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.galleryScroll {
+  display: flex;
   gap: 8px;
+  overflow-x: auto;
+  padding: 0 40px 16px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.galleryScroll::-webkit-scrollbar {
+  display: none;
 }
 
 .galleryCard {
   position: relative;
-  aspect-ratio: 3/4;
+  flex: 0 0 300px;
+  aspect-ratio: 3/2;
   overflow: hidden;
   border-radius: var(--radius-sm);
   background: var(--bg-card);
-  cursor: pointer;
+  scroll-snap-align: start;
 }
 
 .galleryImg {
@@ -384,7 +394,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 32px 16px 16px;
+  padding: 24px 14px 14px;
   background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
 }
 
@@ -401,12 +411,13 @@
 }
 
 .galleryCtaCard {
-  aspect-ratio: 3/4;
+  flex: 0 0 220px;
+  aspect-ratio: 3/2;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-accent);
   background: var(--accent-dim);
@@ -414,6 +425,7 @@
   transition: background 0.2s;
   padding: 24px;
   text-align: center;
+  scroll-snap-align: start;
 }
 
 .galleryCtaCard:hover {
@@ -422,15 +434,24 @@
 }
 
 .galleryCtaText {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--accent);
-  letter-spacing: -0.3px;
+  letter-spacing: 2px;
 }
 
 .galleryCtaArrow {
-  font-size: 22px;
+  font-size: 24px;
   color: var(--accent);
+}
+
+.galleryCtaSub {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  opacity: 0.8;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 /* =========================================
@@ -623,14 +644,6 @@
 .studioAddress {
   font-size: 13.5px;
   color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.studioAddressPin {
-  color: var(--accent);
-  font-size: 14px;
 }
 
 /* =========================================
@@ -656,6 +669,13 @@
   font-size: 16px;
   color: var(--text-secondary);
   margin-bottom: 36px;
+}
+
+.ctaBannerBtns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* =========================================
@@ -788,8 +808,12 @@
     gap: 40px;
   }
 
-  .galleryGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .galleryScroll {
+    padding: 0 20px 16px;
+  }
+
+  .galleryCard {
+    flex: 0 0 260px;
   }
 
   .pricingGrid {

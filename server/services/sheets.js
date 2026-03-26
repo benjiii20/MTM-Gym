@@ -38,7 +38,7 @@ async function appendLead({ name, email, phone, firstQuestion, language, answers
   await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
     range: 'Sheet1!A:M',
-    valueInputOption: 'USER_ENTERED',
+    valueInputOption: 'RAW',
     requestBody: { values: [row] },
   });
 }
@@ -73,7 +73,7 @@ async function logChat({ message, reply, language, ledToLead, messageCount, firs
   await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
     range: 'Chat!A:I',
-    valueInputOption: 'USER_ENTERED',
+    valueInputOption: 'RAW',
     requestBody: { values: [row] },
   });
 }
