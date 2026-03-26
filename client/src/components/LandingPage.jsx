@@ -2,56 +2,56 @@ import { useState } from 'react';
 import styles from './LandingPage.module.css';
 
 const CONSULTATION_URL = 'https://www.mtmgym.de/en/free-initial-consultation/';
-const CDN = 'https://www.mtmgym.de/wp-content/uploads';
+const ASSETS = '/assets';
 
 const PILLARS = [
   {
     number: '01',
     title: 'Strength',
     body: 'We guarantee your progress — without wasting any time — through goal-oriented coaching and structured strength training within a professional setting. Your personal coach accompanies every session in our studio to ensure you always get the absolute maximum benefit.',
-    image: `${CDN}/2023/11/Homepage-HM-Strength-768x576.jpg`,
+    image: `${ASSETS}/pillar-strength.jpg`,
   },
   {
     number: '02',
     title: 'Lifestyle & Longevity',
     body: 'In the initial assessment, we analyze your current condition using medical measurement methods to determine where you currently stand. What level of stress are you exposed to on a daily basis? Do you experience sleep issues, a fluctuating blood sugar level or are you lacking essential micronutrients that are holding you back? By fully understanding you, we can provide the optimal support to help you reach your goals of living a long and healthy life.',
-    image: `${CDN}/2024/02/website_llifestyle-1-768x576.jpg`,
+    image: `${ASSETS}/pillar-lifestyle.jpg`,
   },
   {
     number: '03',
     title: 'Nutrition',
     body: 'The right nutrition is fundamental for well-being and successful training. In order to optimize your intake of macro- and micronutrients, we have developed our nutrition and supplement strategies in a way that they can be adapted to your everyday life. Based on our assessment and customized to your needs, we will develop healthy habits.',
-    image: `${CDN}/2023/11/Homepage-HM-Nutricion-768x576.jpg`,
+    image: `${ASSETS}/pillar-nutrition.jpg`,
   },
   {
     number: '04',
     title: 'Mental Health',
     body: 'Exercise and nutrition are the most powerful partners for mental health. A healthier body, built and sustained through targeted habits, leads to increased stress resilience and improved performance.',
-    image: `${CDN}/2023/11/Homepage-HM-Mental-Health-768x576.jpg`,
+    image: `${ASSETS}/pillar-mental.jpg`,
   },
 ];
 
 const CLIENTS = [
-  { name: 'Mitch', age: 32, job: 'Climate Scientist', months: '16 months', image: `${CDN}/2024/01/01_Mitch_32_Jahre_Klimaforscher_16Monate-720x480.jpg` },
-  { name: 'Manja', age: 38, job: 'Marketing Lead', months: '17 months', image: `${CDN}/2024/01/02_Manja_38_Jahre_Marketing-Lead_17Monate-720x480.jpg` },
-  { name: 'Björn', age: 32, job: 'Entrepreneur', months: '15 months', image: `${CDN}/2024/01/04_Bjoern_32Jahre_Unternehmer_15Monate-720x480.jpg` },
-  { name: 'Anna', age: 33, job: 'Coach', months: '5 months', image: `${CDN}/2025/08/Design-ohne-Titel-2-720x480.png` },
-  { name: 'Ilya', age: 43, job: 'Entrepreneur', months: '14 months', image: `${CDN}/2024/01/05_Isaac_44Jahre_Unternehmer_14Monate-720x480.jpg` },
-  { name: 'Markus', age: 34, job: 'Surgeon', months: '9 months', image: `${CDN}/2024/01/05_Markus_34Jahre_Chirurg_9Monate-720x480.jpg` },
-  { name: 'Fred', age: 32, job: 'VP People', months: '12 months', image: `${CDN}/2024/01/06_Fred_32Jahre_VPPeople_12Monate-720x480.jpg` },
-  { name: 'Eugen', age: 31, job: 'Comedian', months: '3 months', image: `${CDN}/2024/01/07_Eugen_31Jahre_Comedian_3Monate-720x480.jpg` },
-  { name: 'Bashar', age: 35, job: 'Software Engineer', months: '5 months', image: `${CDN}/2024/01/08_Bashar_35Jahre_SoftwareEngineer_5Monate-720x480.jpg` },
-  { name: 'Yu', age: 30, job: 'Medical Doctor', months: '8 months', image: `${CDN}/2024/01/10_Yu_30Jahre_Medizinerin_8Monate-720x480.jpg` },
-  { name: 'Toby', age: 44, job: 'VP', months: '12 months', image: `${CDN}/2024/01/11_Toby_44Jahre_VP_12Monate-720x480.jpg` },
-  { name: 'Shawn', age: 36, job: 'Real Estate', months: '24 months', image: `${CDN}/2024/01/12_Shawn_36Jahre_Makler_24Monate-720x480.jpg` },
-  { name: 'Karl', age: 37, job: 'Physician', months: '6 months', image: `${CDN}/2024/01/14_Karl_37Jahre_Arzt_6Monate-720x480.jpg` },
-  { name: 'Robert', age: 43, job: 'Consultant', months: '4 months', image: `${CDN}/2024/01/15_Robert_43Jahre_Consultatant_4Monate-720x480.jpg` },
-  { name: 'Jason', age: 41, job: 'Entrepreneur', months: '5 months', image: `${CDN}/2024/01/16_Jason_41Jahre_Unternehmer_5Monate-720x480.jpg` },
-  { name: 'Thanu', age: 29, job: 'Project Manager', months: '4 months', image: `${CDN}/2024/01/17_Thanu_29Jahre_Projekt-Manager_4Monate-720x480.jpg` },
-  { name: 'Genna', age: 32, job: 'Entrepreneur', months: '8 months', image: `${CDN}/2024/01/18_Genna_32Jahre_Unternehmer_8Monate-720x480.jpg` },
-  { name: 'Henry', age: 28, job: 'Account Executive', months: '4 months', image: `${CDN}/2024/01/19_Henry_28-Jahre_Account-Executive_4Monate-720x480.jpg` },
-  { name: 'Elli', age: 23, job: 'Nurse', months: '8 months', image: `${CDN}/2024/01/20_Elli_23Jahre_Krankenschwester_8Monate-720x480.jpg` },
-  { name: 'Phillip', age: 29, job: 'Team Lead', months: '16 months', image: `${CDN}/2024/01/21_Phillip_29Jahre_TeamLead_16Monate-720x480.jpg` },
+  { name: 'Mitch', age: 32, job: 'Climate Scientist', months: '16 months', image: `${ASSETS}/client-mitch.jpg` },
+  { name: 'Manja', age: 38, job: 'Marketing Lead', months: '17 months', image: `${ASSETS}/client-manja.jpg` },
+  { name: 'Björn', age: 32, job: 'Entrepreneur', months: '15 months', image: `${ASSETS}/client-bjorn.jpg` },
+  { name: 'Anna', age: 33, job: 'Coach', months: '5 months', image: `${ASSETS}/client-anna.png` },
+  { name: 'Ilya', age: 43, job: 'Entrepreneur', months: '14 months', image: `${ASSETS}/client-ilya.jpg` },
+  { name: 'Markus', age: 34, job: 'Surgeon', months: '9 months', image: `${ASSETS}/client-markus.jpg` },
+  { name: 'Fred', age: 32, job: 'VP People', months: '12 months', image: `${ASSETS}/client-fred.jpg` },
+  { name: 'Eugen', age: 31, job: 'Comedian', months: '3 months', image: `${ASSETS}/client-eugen.jpg` },
+  { name: 'Bashar', age: 35, job: 'Software Engineer', months: '5 months', image: `${ASSETS}/client-bashar.jpg` },
+  { name: 'Yu', age: 30, job: 'Medical Doctor', months: '8 months', image: `${ASSETS}/client-yu.jpg` },
+  { name: 'Toby', age: 44, job: 'VP', months: '12 months', image: `${ASSETS}/client-toby.jpg` },
+  { name: 'Shawn', age: 36, job: 'Real Estate', months: '24 months', image: `${ASSETS}/client-shawn.jpg` },
+  { name: 'Karl', age: 37, job: 'Physician', months: '6 months', image: `${ASSETS}/client-karl.jpg` },
+  { name: 'Robert', age: 43, job: 'Consultant', months: '4 months', image: `${ASSETS}/client-robert.jpg` },
+  { name: 'Jason', age: 41, job: 'Entrepreneur', months: '5 months', image: `${ASSETS}/client-jason.jpg` },
+  { name: 'Thanu', age: 29, job: 'Project Manager', months: '4 months', image: `${ASSETS}/client-thanu.jpg` },
+  { name: 'Genna', age: 32, job: 'Entrepreneur', months: '8 months', image: `${ASSETS}/client-genna.jpg` },
+  { name: 'Henry', age: 28, job: 'Account Executive', months: '4 months', image: `${ASSETS}/client-henry.jpg` },
+  { name: 'Elli', age: 23, job: 'Nurse', months: '8 months', image: `${ASSETS}/client-elli.jpg` },
+  { name: 'Phillip', age: 29, job: 'Team Lead', months: '16 months', image: `${ASSETS}/client-phillip.jpg` },
 ];
 
 const PT_TIERS = [
@@ -161,22 +161,22 @@ const COACHING_TIERS = [
 
 const CONCEPT_BOXES = [
   {
-    icon: `${CDN}/2024/02/Icon-Team-five-stars.svg`,
+    icon: `${ASSETS}/icon-team.svg`,
     title: 'A TEAM OF EXPERTS',
     body: 'Combined knowledge from over 10 academic degrees, over 100 seminars, tens of thousands of hours of Personal Training, and diverse areas of expertise. We coaches are a team and share the goal of a healthy, long life for our members.',
   },
   {
-    icon: `${CDN}/2023/12/Icon-Space.svg`,
+    icon: `${ASSETS}/icon-space.svg`,
     title: 'THE PERFECT SPACE',
     body: 'More than a gym. Our studios are exclusively for Personal Training and are optimized for your experience. We offer the most modern technology and the perfect atmosphere for your workouts.',
   },
   {
-    icon: `${CDN}/2023/12/Icon-Monitoring.svg`,
+    icon: `${ASSETS}/icon-monitoring.svg`,
     title: 'CONSTANT MONITORING',
     body: 'Assessment according to medical standards in a 4-week cycle: Your physical progress data and nutritional biomarkers serve as the basis for customizing your training and diet plans to achieve optimal results.',
   },
   {
-    icon: `${CDN}/2023/12/Icon-Training.svg`,
+    icon: `${ASSETS}/icon-training.svg`,
     title: 'PERIODIZED WORKOUT ROUTINE',
     body: 'Periodized training based on sports science, taking your assessment into account. The MTM program utilizes a cyclical structure of varying intensity levels to ensure long-term performance improvements.',
   },
@@ -191,7 +191,7 @@ export default function LandingPage({ onOpenChat }) {
       {/* ---- NAV ---- */}
       <nav className={styles.nav}>
         <a href="https://www.mtmgym.de/en/" className={styles.navLogo} target="_blank" rel="noopener noreferrer">
-          <img src={`${CDN}/2023/11/mtm-logo-small.svg`} alt="MTM Personal Training" className={styles.navLogoImg} />
+          <img src={`${ASSETS}/mtm-logo-small.svg`} alt="MTM Personal Training" className={styles.navLogoImg} />
         </a>
         <div className={styles.navRight}>
           <span className={styles.navLang}>EN</span>
@@ -211,14 +211,14 @@ export default function LandingPage({ onOpenChat }) {
           muted
           loop
           playsInline
-          poster={`${CDN}/2024/01/MTM-Startseite-desktop-fallback-video.png`}
+          poster={`${ASSETS}/hero-poster.png`}
         >
-          <source src={`${CDN}/2024/01/Header-MTM-New.mp4`} type="video/mp4" />
+          <source src={`${ASSETS}/hero-video.mp4`} type="video/mp4" />
         </video>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
           <img
-            src={`${CDN}/2023/11/make-the-most.svg`}
+            src={`${ASSETS}/make-the-most.svg`}
             alt="Make the Most"
             className={styles.heroLogo}
           />
@@ -417,7 +417,7 @@ export default function LandingPage({ onOpenChat }) {
               className={styles.studioCard}
             >
               <img
-                src={`${CDN}/2023/12/Homepage-Teaser-Studio-Charlottenburg-576x768.jpg`}
+                src={`${ASSETS}/studio-charlottenburg.jpg`}
                 alt="Studio Charlottenburg"
                 className={styles.studioImg}
                 loading="lazy"
@@ -436,7 +436,7 @@ export default function LandingPage({ onOpenChat }) {
               className={styles.studioCard}
             >
               <img
-                src={`${CDN}/2024/05/DSC02923-576x768.jpg`}
+                src={`${ASSETS}/studio-mitte.jpg`}
                 alt="Studio Mitte"
                 className={styles.studioImg}
                 loading="lazy"
@@ -472,7 +472,7 @@ export default function LandingPage({ onOpenChat }) {
           <div className={styles.footerInner}>
             <div>
               <img
-                src={`${CDN}/2023/11/make-the-most.svg`}
+                src={`${ASSETS}/make-the-most.svg`}
                 alt="Make the Most"
                 className={styles.footerLogo}
               />
