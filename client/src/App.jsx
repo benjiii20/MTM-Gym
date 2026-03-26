@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
-import ChatWindow from './components/ChatWindow';
+import LandingPage from './components/LandingPage';
+import ChatWidget from './components/ChatWidget';
 
 const STORAGE_KEY = 'mtm_chat_history';
 const SESSION_KEY = 'mtm_session_id';
@@ -31,6 +32,7 @@ export default function App() {
   const [messages, setMessages] = useState(initial.messages);
   const [isLoading, setIsLoading] = useState(false);
   const [isReturnVisitor] = useState(initial.isReturn);
+  const [widgetOpen, setWidgetOpen] = useState(false);
   const [firstQuestion, setFirstQuestion] = useState(() => {
     const firstUser = initial.messages.find((m) => m.role === 'user');
     return firstUser ? firstUser.content : '';
@@ -110,11 +112,17 @@ export default function App() {
   }, []);
 
   return (
-    <ChatWindow
-      messages={messages}
-      isLoading={isLoading}
-      onSendMessage={sendMessage}
-      onDismissBooking={dismissBooking}
-    />
+    <>
+      <LandingPage onOpenChat={() => setWidgetOpen(true)} />
+      <ChatWidget
+        isOpen={widgetOpen}
+        onOpen={() => setWidgetOpen(true)}
+        onClose={() => setWidgetOpen(false)}
+        messages={messages}
+        isLoading={isLoading}
+        onSendMessage={sendMessage}
+        onDismissBooking={dismissBooking}
+      />
+    </>
   );
 }

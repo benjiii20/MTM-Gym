@@ -21,8 +21,8 @@
   --radius-sm: 8px;
 }
 
-html, body, #root {
-  height: 100%;
+html, body {
+  min-height: 100%;
   width: 100%;
 }
 
