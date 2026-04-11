@@ -13,7 +13,7 @@ const WELCOME_MESSAGE = {
   id: 'welcome',
   role: 'assistant',
   content:
-    "Welcome to MTM Gym Berlin! I'm here to answer your questions about our personal training programs, locations, pricing, and team. How can I help you today?\n\n*(Sie können mich auch auf Deutsch fragen — Willkommen!)*",
+    "Hello! Would you like to chat in **English** or **German**?\n\nHallo! Möchten Sie auf **Englisch** oder **Deutsch** schreiben?",
 };
 
 function loadHistory() {
@@ -85,8 +85,9 @@ export default function App() {
           {
             id: Date.now() + 1,
             role: 'assistant',
-            content: data.reply || 'Sorry, something went wrong. Please try again.',
+            content: data.reply || (data.showSoftLeadForm ? 'Here you go!' : data.showBookingForm ? 'Great, here\'s the form!' : 'Sorry, something went wrong. Please try again.'),
             showBookingForm: data.showBookingForm || false,
+            showSoftLeadForm: data.showSoftLeadForm || false,
           },
         ]);
       } catch {
@@ -111,6 +112,18 @@ export default function App() {
     );
   }, []);
 
+  const dismissSoftLead = useCallback((msgId) => {
+    setMessages((prev) =>
+      prev.map((m) => (m.id === msgId ? { ...m, showSoftLeadForm: false } : m))
+    );
+  }, []);
+
+  const clearChat = useCallback(() => {
+    localStorage.removeItem(STORAGE_KEY);
+    setMessages([WELCOME_MESSAGE]);
+    setFirstQuestion('');
+  }, []);
+
   return (
     <>
       <LandingPage onOpenChat={() => setWidgetOpen(true)} />
@@ -122,6 +135,8 @@ export default function App() {
         isLoading={isLoading}
         onSendMessage={sendMessage}
         onDismissBooking={dismissBooking}
+        onDismissSoftLead={dismissSoftLead}
+        onClearChat={clearChat}
       />
     </>
   );

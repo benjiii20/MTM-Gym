@@ -66,6 +66,24 @@
   letter-spacing: 0.5px;
 }
 
+.clearBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.2s;
+  margin-left: 4px;
+}
+
+.clearBtn:hover {
+  color: var(--text-secondary);
+}
+
 /* ---- Messages Area ---- */
 .messagesArea {
   flex: 1;

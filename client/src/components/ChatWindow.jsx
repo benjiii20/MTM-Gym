@@ -3,7 +3,7 @@ import Message from './Message';
 import TypingIndicator from './TypingIndicator';
 import styles from './ChatWindow.module.css';
 
-export default function ChatWindow({ messages, isLoading, onSendMessage, onDismissBooking }) {
+export default function ChatWindow({ messages, isLoading, onSendMessage, onDismissBooking, onDismissSoftLead, onClearChat }) {
   const [input, setInput] = useState('');
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
@@ -38,6 +38,9 @@ export default function ChatWindow({ messages, isLoading, onSendMessage, onDismi
         <div className={styles.headerRight}>
           <span className={styles.statusDot} />
           <span className={styles.statusLabel}>AI Assistant</span>
+          <button className={styles.clearBtn} onClick={onClearChat}>
+            Clear chat
+          </button>
         </div>
       </header>
 
@@ -47,6 +50,7 @@ export default function ChatWindow({ messages, isLoading, onSendMessage, onDismi
             key={msg.id}
             message={msg}
             onDismissBooking={onDismissBooking}
+            onDismissSoftLead={onDismissSoftLead}
           />
         ))}
         {isLoading && <TypingIndicator />}

@@ -10,7 +10,7 @@ function truncate(str, max) {
 }
 
 router.post('/', async (req, res) => {
-  let { name, email, phone, firstQuestion, language } = req.body;
+  let { name, email, phone, language, goal } = req.body;
 
   if (!email || typeof email !== 'string') {
     return res.status(400).json({ error: 'Email is required.' });
@@ -21,13 +21,13 @@ router.post('/', async (req, res) => {
     return res.status(400).json({ error: 'Invalid email address.' });
   }
 
-  name          = truncate(name, 100);
-  phone         = truncate(phone, 30);
-  firstQuestion = truncate(firstQuestion, 500);
-  language      = truncate(language, 5);
+  name     = truncate(name, 100);
+  phone    = truncate(phone, 30);
+  language = truncate(language, 5);
+  goal     = truncate(goal, 100);
 
   try {
-    await appendLead({ name, email, phone, firstQuestion, language });
+    await appendLead({ name, email, phone, language, goal });
     res.json({ success: true });
   } catch (err) {
     console.error('Google Sheets error:', err.message);

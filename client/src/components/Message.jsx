@@ -1,9 +1,10 @@
 import ReactMarkdown from 'react-markdown';
 import styles from './Message.module.css';
+import SoftLeadForm from './SoftLeadForm';
 
 const BOOKING_URL = 'https://www.mtmgym.de/en/free-initial-consultation/';
 
-export default function Message({ message, onDismissBooking }) {
+export default function Message({ message, onDismissBooking, onDismissSoftLead }) {
   const isUser = message.role === 'user';
 
   return (
@@ -37,6 +38,9 @@ export default function Message({ message, onDismissBooking }) {
               Maybe later
             </button>
           </div>
+        )}
+        {message.showSoftLeadForm && (
+          <SoftLeadForm onDismiss={() => onDismissSoftLead(message.id)} />
         )}
       </div>
     </div>

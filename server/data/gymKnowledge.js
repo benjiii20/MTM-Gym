@@ -133,6 +133,103 @@ A: Email: info@mtmgym.de | Website: https://www.mtmgym.de | Book a free consulta
 SUPPLEMENTS SHOP
 ----------------
 MTM operates a separate online shop at mtmshop.de selling supplements and related products.
+
+OPENING HOURS
+-------------
+Monday–Friday: 07:00–20:00
+Saturday: 09:00–13:00
+Sunday: Closed
+
+PHONE / WHATSAPP
+----------------
+03031198659
+
+BOOK A CALL (CALENDLY)
+-----------------------
+https://calendly.com/almudena-mtmgym/erstgesprach-vereinbarung
+
+SIGN UP ONLINE
+--------------
+English: https://makethemost.mtmgym.de/signupen/
+German:  https://makethemost.mtmgym.de/signup/
+
+TRAINING METHODOLOGY
+--------------------
+- Programs follow 16-week macrocycles with wave-like periodization — not random workouts
+- Training frequency: 2–4 sessions/week is optimal for most clients
+
+PROGRESS TRACKING
+-----------------
+Two complementary methods are used:
+1. InBody Analysis — medical-grade body scanner that measures skeletal muscle mass and visceral fat precisely
+2. 13-point Harpenden Caliper Skinfold Assessment — reveals not only body composition changes but also cortisol patterns, gut health markers, and hormonal signals
+
+NUTRITION — MTM FOOD DESIGN
+-----------------------------
+MTM's nutrition approach does NOT involve calorie counting. Instead, it focuses on:
+- Blood sugar stability
+- Insulin and cortisol balance
+- Gut healing as the foundation
+This results in sustainable, lasting results without restrictive dieting.
+
+JOINT PAIN / MOBILITY LIMITATIONS
+-----------------------------------
+Before beginning heavy lifts, every client undergoes a comprehensive mobility and functional assessment. Exercise selection is adapted to your current condition. The root cause of discomfort or limitation is identified and corrected — not worked around.
+
+SESSION STRUCTURE
+-----------------
+Every 1:1 session follows a consistent structure:
+1. Dynamic warm-up
+2. Structured strength/conditioning block
+3. Cool-down and mobility work
+
+EQUIPMENT
+---------
+Studios are equipped with:
+- Power racks
+- Adjustable benches
+- Leg curl machines
+- Cable pulley systems
+- Full dumbbell range
+- Airbikes
+- 45° back extensions
+
+RECOVERY AMENITIES
+------------------
+1. Clearlight Sanctuary Infrared Saunas
+   - Included in all memberships (no extra cost)
+   - Benefits: deep muscle relaxation, improved circulation, reduced DOMS (delayed onset muscle soreness), detoxification
+
+2. Hyperbaric Oxygen Chamber
+   - Available at Mitte studio only
+   - Additional cost — not included in membership
+   - Benefits: tissue repair acceleration, inflammation reduction, improved sleep quality, faster recovery
+
+COACH SURCHARGES
+----------------
+Standard sessions are priced as listed in the membership packages. Additional surcharges apply for specific coaches:
+- Head Coach sessions: +€30 per session
+- Founder sessions (Malte Primus or Max Barde): +€90 per session
+Both are subject to availability.
+
+CANCELLATION POLICY
+-------------------
+- You must cancel at least 24 hours before your scheduled session
+- If you cancel less than 24 hours in advance, the session is deducted from your package
+- Timely cancellations can be rescheduled as a make-up session within the 2-month package validity period
+- No cash refunds are given for unused sessions
+
+PAYMENT
+-------
+Sessions are billed via SEPA direct debit (mandate signed at sign-up).
+Alternative payment methods are available upon request.
+
+PRACTICAL INFORMATION
+---------------------
+- Changing rooms: Separate facilities for men and women; towel service is included
+- Parking: Available near both studio locations
+- Beginners: Fully welcome — all training is adapted to your current level and experience
+- Medical note: MTM Gym is a personal training studio, not a medical facility. Always consult your physician for health-related concerns before starting any fitness program.
 `;
 
 module.exports = gymKnowledge;

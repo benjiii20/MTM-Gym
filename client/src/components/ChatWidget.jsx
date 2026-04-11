@@ -19,7 +19,7 @@ function CloseIcon() {
   );
 }
 
-export default function ChatWidget({ isOpen, onOpen, onClose, messages, isLoading, onSendMessage, onDismissBooking }) {
+export default function ChatWidget({ isOpen, onOpen, onClose, messages, isLoading, onSendMessage, onDismissBooking, onDismissSoftLead, onClearChat }) {
   return (
     <div className={styles.container}>
       <div className={`${styles.panel} ${isOpen ? styles.panelOpen : styles.panelClosed}`}>
@@ -28,6 +28,8 @@ export default function ChatWidget({ isOpen, onOpen, onClose, messages, isLoadin
           isLoading={isLoading}
           onSendMessage={onSendMessage}
           onDismissBooking={onDismissBooking}
+          onDismissSoftLead={onDismissSoftLead}
+          onClearChat={onClearChat}
         />
       </div>
       <button
